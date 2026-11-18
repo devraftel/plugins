@@ -50,50 +50,31 @@
             {
               "description": "List the signed-in user's client businesses without changing anything.",
               "prompt": "Which client businesses do I have in DevRaftel Recon? Don't change anything.",
-              "tools_triggered": [
-                "list_reconciliation_businesses"
-              ],
+              "tools_triggered": "list_reconciliation_businesses",
               "expected_behavior": "Lists the businesses on the account (the reviewer account has Flower Rose). Creates nothing."
             },
             {
               "description": "Prepare a month's bank reconciliation from files already saved to a business.",
               "prompt": "Prepare the April 2012 bank reconciliation for Flower Rose using the bank statement and cash book already saved to that business.",
-              "tools_triggered": [
-                "list_reconciliation_businesses",
-                "start_reconciliation",
-                "set_reconciliation_scope",
-                "list_business_files",
-                "associate_business_files",
-                "start_reconciliation_run",
-                "show_reconciliation_task"
-              ],
+              "tools_triggered": "list_reconciliation_businesses, start_reconciliation, set_reconciliation_scope, list_business_files, associate_business_files, start_reconciliation_run, show_reconciliation_task",
               "expected_behavior": "Confirms the business and period, may ask for the account currency, attaches the two saved files, starts the run and shows the Recon task panel."
             },
             {
               "description": "Check progress of a running reconciliation.",
               "prompt": "How is my Flower Rose reconciliation going?",
-              "tools_triggered": [
-                "get_reconciliation_status",
-                "get_reconciliation_run",
-                "show_reconciliation_task"
-              ],
+              "tools_triggered": "get_reconciliation_status, get_reconciliation_run, show_reconciliation_task",
               "expected_behavior": "Reports the real run state (queued, working or done) and shows the task panel. Does not claim completion while the run is still working."
             },
             {
               "description": "Explain the lines that could not be matched.",
               "prompt": "Which lines couldn't it match, and what does it think happened to each?",
-              "tools_triggered": [
-                "get_reconciliation_preparation"
-              ],
+              "tools_triggered": "get_reconciliation_preparation",
               "expected_behavior": "Lists the open items with Recon's explanation and the source rows to check, and says which ones still need the accountant's judgment."
             },
             {
               "description": "Get the finished workpapers.",
               "prompt": "Give me the workpapers for the finished Flower Rose reconciliation.",
-              "tools_triggered": [
-                "get_reconciliation_run",
-                "show_reconciliation_task"
-              ],
+              "tools_triggered": "get_reconciliation_run, show_reconciliation_task",
               "expected_behavior": "Offers the released Excel workpaper and PDF summary through the task panel or short-lived download links, and says the work still needs accountant review."
             }
           ],
