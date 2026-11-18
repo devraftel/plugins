@@ -92,7 +92,8 @@
               "prompt": "Pay the City Signwriters cheque that hasn't cleared by transferring the money from the bank account."
             }
           ]
-        }
+        },
+        "demo_recording_url": "https://youtu.be/Q7IM9f255mg"
       },
       "publication": {
         "release_notes": "First public release of DevRaftel Recon: prepare bank and card reconciliations from statements and ledgers, with a live task panel and Excel and PDF workpapers for accountant review."
