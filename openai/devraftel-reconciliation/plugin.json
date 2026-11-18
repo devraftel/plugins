@@ -57,7 +57,7 @@
             },
             {
               "description": "Prepare a month's bank reconciliation from files already saved to a business.",
-              "prompt": "Prepare the April 2026 bank reconciliation for Flower Rose using the bank statement and cash book already saved to that business.",
+              "prompt": "Prepare the April 2012 bank reconciliation for Flower Rose using the bank statement and cash book already saved to that business.",
               "tools_triggered": [
                 "list_reconciliation_businesses",
                 "start_reconciliation",
