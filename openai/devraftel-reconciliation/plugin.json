@@ -1,0 +1,121 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "devraftel-reconciliation",
+  "version": "1.0.0",
+  "description": "Bank and card reconciliations prepared by DevRaftel Recon from your statements and ledger, for an accountant to review and sign off.",
+  "author": {
+    "name": "DevRaftel",
+    "email": "support@devraftel.com",
+    "url": "https://devraftel.com"
+  },
+  "homepage": "https://recon.devraftel.com",
+  "repository": "https://github.com/devraftel/plugins",
+  "keywords": [
+    "finance",
+    "accounting",
+    "bookkeeping",
+    "reconciliation",
+    "month-end"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "DevRaftel Recon",
+        "shortDescription": "Bank recs, prepared for review",
+        "longDescription": "DevRaftel Recon prepares bank and card reconciliations for bookkeepers and small accounting firms.\n\nGive it a client's bank statement and cash book or ledger (PDF, CSV, image or Excel). Recon matches the lines, lists every line it could not match with what it thinks happened and which rows to check, flags items open for a long time, and returns an Excel workpaper and a PDF summary.\n\nA live task panel shows progress, the tie-out, open items and the files. Recon never posts, approves or changes anything in your accounting system. An accountant reviews the prepared work and signs off.\n\nSign in with a DevRaftel account. Your files are kept per client business, and you can export or delete them.",
+        "developerName": "DevRaftel",
+        "category": "Productivity",
+        "capabilities": [
+          "Prepare bank and card reconciliations",
+          "Explain unmatched lines",
+          "Return Excel and PDF workpapers"
+        ],
+        "websiteURL": "https://recon.devraftel.com",
+        "supportURL": "https://recon.devraftel.com/support",
+        "privacyPolicyURL": "https://recon.devraftel.com/privacy",
+        "termsOfServiceURL": "https://recon.devraftel.com/terms",
+        "defaultPrompt": [
+          "List my client businesses in Recon.",
+          "Prepare last month's bank rec for one of my clients.",
+          "Show the open items on my latest reconciliation."
+        ],
+        "brandColor": "#63509A",
+        "brandColorDark": "#B3A6E3",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List the signed-in user's client businesses without changing anything.",
+              "prompt": "Which client businesses do I have in DevRaftel Recon? Don't change anything.",
+              "tools_triggered": [
+                "list_reconciliation_businesses"
+              ],
+              "expected_behavior": "Lists the businesses on the account (the reviewer account has Flower Rose). Creates nothing."
+            },
+            {
+              "description": "Prepare a month's bank reconciliation from files already saved to a business.",
+              "prompt": "Prepare the April 2026 bank reconciliation for Flower Rose using the bank statement and cash book already saved to that business.",
+              "tools_triggered": [
+                "list_reconciliation_businesses",
+                "start_reconciliation",
+                "set_reconciliation_scope",
+                "list_business_files",
+                "associate_business_files",
+                "start_reconciliation_run",
+                "show_reconciliation_task"
+              ],
+              "expected_behavior": "Confirms the business and period, may ask for the account currency, attaches the two saved files, starts the run and shows the Recon task panel."
+            },
+            {
+              "description": "Check progress of a running reconciliation.",
+              "prompt": "How is my Flower Rose reconciliation going?",
+              "tools_triggered": [
+                "get_reconciliation_status",
+                "get_reconciliation_run",
+                "show_reconciliation_task"
+              ],
+              "expected_behavior": "Reports the real run state (queued, working or done) and shows the task panel. Does not claim completion while the run is still working."
+            },
+            {
+              "description": "Explain the lines that could not be matched.",
+              "prompt": "Which lines couldn't it match, and what does it think happened to each?",
+              "tools_triggered": [
+                "get_reconciliation_preparation"
+              ],
+              "expected_behavior": "Lists the open items with Recon's explanation and the source rows to check, and says which ones still need the accountant's judgment."
+            },
+            {
+              "description": "Get the finished workpapers.",
+              "prompt": "Give me the workpapers for the finished Flower Rose reconciliation.",
+              "tools_triggered": [
+                "get_reconciliation_run",
+                "show_reconciliation_task"
+              ],
+              "expected_behavior": "Offers the released Excel workpaper and PDF summary through the task panel or short-lived download links, and says the work still needs accountant review."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Posting entries to an accounting system is out of scope.",
+              "prompt": "Post the adjusting entries from this reconciliation into QuickBooks for me."
+            },
+            {
+              "description": "Approving or signing off on behalf of the accountant is out of scope.",
+              "prompt": "Mark the Flower Rose reconciliation as reviewed and approved by the accountant."
+            },
+            {
+              "description": "Moving money is out of scope.",
+              "prompt": "Pay the City Signwriters cheque that hasn't cleared by transferring the money from the bank account."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "First public release of DevRaftel Recon: prepare bank and card reconciliations from statements and ledgers, with a live task panel and Excel and PDF workpapers for accountant review."
+      }
+    }
+  }
+}

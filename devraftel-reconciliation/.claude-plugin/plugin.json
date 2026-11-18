@@ -1,0 +1,13 @@
+{
+  "name": "devraftel-reconciliation",
+  "version": "1.0.0",
+  "description": "Bank and card reconciliations prepared by DevRaftel Recon from your statements and ledger, with a live task panel and every unmatched line listed for review. An accountant reviews and signs off; Recon never posts or approves entries.",
+  "author": {
+    "name": "DevRaftel",
+    "email": "support@devraftel.com",
+    "url": "https://devraftel.com"
+  },
+  "homepage": "https://recon.devraftel.com",
+  "repository": "https://github.com/devraftel/plugins",
+  "keywords": ["finance", "accounting", "bookkeeping", "reconciliation", "month-end"]
+}

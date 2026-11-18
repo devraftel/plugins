@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "devraftel-reconciliation": {
+      "type": "http",
+      "url": "https://api.finance.devraftel.com/mcp/reconciliation"
+    }
+  }
+}

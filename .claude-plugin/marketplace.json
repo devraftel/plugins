@@ -1,0 +1,18 @@
+{
+  "name": "devraftel",
+  "owner": {
+    "name": "DevRaftel",
+    "email": "support@devraftel.com",
+    "url": "https://devraftel.com"
+  },
+  "metadata": {
+    "description": "DevRaftel plugins for finance work, starting with Recon bank reconciliations."
+  },
+  "plugins": [
+    {
+      "name": "devraftel-reconciliation",
+      "source": "./devraftel-reconciliation",
+      "description": "Bank and card reconciliations prepared by DevRaftel Recon, for an accountant to review and sign off."
+    }
+  ]
+}
